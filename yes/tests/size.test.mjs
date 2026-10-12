@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { statSync } from "node:fs";
-import { distFilePath } from "./helpers.mjs";
+import { badgeFileNames, distFilePath } from "./helpers.mjs";
 
 const sizeBudgetsInBytes = {
   "index.html": 5120,
-  "badge.svg": 1024,
+  ...Object.fromEntries(badgeFileNames.map((badgeFileName) => [badgeFileName, 1024])),
 };
 
 for (const [fileName, maximumBytes] of Object.entries(sizeBudgetsInBytes)) {

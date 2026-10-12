@@ -10,3 +10,7 @@ export function readDistFile(relativePath) {
 export function distFilePath(relativePath) {
   return distRoot + relativePath;
 }
+
+export const badgeFileNames = ["badge.svg", "badge-ai.svg", "badge-llm.svg", "badge-bots.svg"];
+
+export const productionOrigin = "https://yes.agentsp.lease/";

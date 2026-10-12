@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readDistFile } from "./helpers.mjs";
+import { badgeFileNames, productionOrigin, readDistFile } from "./helpers.mjs";
 
 const pageSource = readDistFile("index.html");
 
@@ -23,8 +23,26 @@ test("links have a visible focus style", () => {
   assert.match(pageSource, /:focus-visible\s*\{[^}]*outline:/);
 });
 
-test("canonical URL and badge snippet use the production domain", () => {
-  assert.match(pageSource, /<link rel="canonical" href="https:\/\/yes\.botsp\.lease\/">/);
-  assert.ok(pageSource.includes("[![AI contributions welcome](https://yes.botsp.lease/badge.svg)](https://yes.botsp.lease/)"));
+test("canonical URL and badge snippets use the production domain", () => {
+  assert.ok(pageSource.includes(`<link rel="canonical" href="${productionOrigin}">`));
+  for (const badgeFileName of badgeFileNames) {
+    assert.ok(
+      pageSource.includes(`[![AI contributions welcome](${productionOrigin}${badgeFileName})](${productionOrigin})`),
+      `missing snippet for ${badgeFileName}`,
+    );
+  }
   assert.doesNotMatch(pageSource, /example\.com|TODO/);
+});
+
+test("no file still points at the old botsp.lease domain", () => {
+  for (const fileName of ["index.html", ...badgeFileNames]) {
+    assert.doesNotMatch(readDistFile(fileName), /botsp\.lease/i, fileName);
+  }
+});
+
+test("copy names agents, LLMs and AI", () => {
+  const visibleText = pageSource.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<[^>]+>/g, " ");
+  for (const term of [/\bagents?\b/i, /\bLLMs?\b/, /\bAI\b/]) {
+    assert.match(visibleText, term);
+  }
 });
