@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>No Bots Please</title>
+    <title>No Agents Please</title>
     <style>
       * {
         font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
@@ -51,23 +51,31 @@
     <header>🚫 🤖</header>
     <main>
       <div>
-        <h1>No Bots, Please</h1>
+        <h1>No Agents, Please</h1>
         <p>This repository is the result of direct human effort, and does not use LLM agents to generate code, documentation or design.</p>
-        <h2>You too?</h2>
+        <h2>Badges</h2>
         <p>If you want to mark your projects too, you can add the badge.</p>
-        <p><img src="/badge.svg" width="172" height="20" alt="'No bots please' badge" />
-        <pre><code>[![No AI contributions](https://no.botsp.lease/badge.svg)](https://no.botsp.lease/)</code></pre>
+        <p><img src="/badge.svg" width="172" height="20" alt="'No agents please' badge" />
+        <pre><code>[![No AI contributions](https://no.agentsp.lease/badge.svg)](https://no.agentsp.lease/)</code></pre>
+        <p><img src="/badge-ai.svg" width="172" height="20" alt="'No AI please' badge" />
+        <pre><code>[![No AI contributions](https://no.agentsp.lease/badge-ai.svg)](https://no.agentsp.lease/)</code></pre>
+        <p><img src="/badge-bots.svg" width="172" height="20" alt="'No bots please' badge" />
+        <pre><code>[![No AI contributions](https://no.agentsp.lease/badge-bots.svg)](https://no.agentsp.lease/)</code></pre>
       </div>
     </main>
-    <footer>Made by Real Humans - <a href="https://github.com/jmhobbs/botsp.lease">View on GitHub</a></footer>
+    <footer>Made by Real Humans - <a href="https://github.com/jmhobbs/agentsp.lease">View on GitHub</a></footer>
     <script>
-      document.querySelector('code').addEventListener('click', (e) => {
-        const selection = window.getSelection();
-        const range = document.createRange();
-        range.selectNodeContents(e.currentTarget);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      });
+      document.querySelectorAll('code').forEach(
+        (node) => {
+          node.addEventListener('click', (e) => {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(e.currentTarget);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          });
+        }
+      );
     </script>
   </body>
 </html>
