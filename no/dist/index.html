@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>No Bots Please</title>
+    <style>
+      * {
+        font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+      }
+      html, body {
+        margin: 0;
+      }
+      header {
+        background: #ddd;
+        text-align: center;
+        font-size: 5em;
+        padding: 0.5em 0;
+      }
+      body {
+        padding: 0;
+      }
+      main {
+        max-width: 50em;
+        margin: 0 auto;
+      }
+      main > div {
+        padding: 0 0.5em;
+      }
+      pre {
+        background: #f0f0f0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        padding: 0.2em 0.4em;
+      }
+      code {
+        font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+        font-size: 0.8em;
+      }
+      footer {
+        text-align: center;
+        padding: 1em 0;
+        font-size: 0.8em;
+      }
+      footer a {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <header>🚫 🤖</header>
+    <main>
+      <div>
+        <h1>No Bots, Please</h1>
+        <p>This repository is the result of direct human effort, and does not use LLM agents to generate code, documentation or design.</p>
+        <h2>You too?</h2>
+        <p>If you want to mark your projects too, you can add the badge.</p>
+        <p><img src="/badge.svg" width="172" height="20" alt="'No bots please' badge" />
+        <pre><code>[![No AI contributions](https://no.botsp.lease/badge.svg)](https://no.botsp.lease/)</code></pre>
+      </div>
+    </main>
+    <footer>Made by Real Humans - <a href="https://github.com/jmhobbs/botsp.lease">View on GitHub</a></footer>
+    <script>
+      document.querySelector('code').addEventListener('click', (e) => {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(e.currentTarget);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      });
+    </script>
+  </body>
+</html>
