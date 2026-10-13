@@ -46,3 +46,12 @@ test("copy names agents, LLMs and AI", () => {
     assert.match(visibleText, term);
   }
 });
+
+test("Open Graph tags match the page title, description and canonical URL", () => {
+  const pageTitle = pageSource.match(/<title>([^<]+)<\/title>/)[1];
+  const pageDescription = pageSource.match(/<meta name="description" content="([^"]+)">/)[1];
+  assert.ok(pageSource.includes(`<meta property="og:title" content="${pageTitle}">`));
+  assert.ok(pageSource.includes(`<meta property="og:type" content="website">`));
+  assert.ok(pageSource.includes(`<meta property="og:url" content="${productionOrigin}">`));
+  assert.ok(pageSource.includes(`<meta property="og:description" content="${pageDescription}">`));
+});
